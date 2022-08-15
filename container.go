@@ -17,13 +17,13 @@
 package container
 
 // Container An IOC container root interface
-type Container[T any] interface {
+type Container interface {
 	// RegisterBean register bean by name (The name(ID) must be unique)
 	// 通过 名称(ID)注册 Bean 实例,且名称(ID)全局唯一
-	RegisterBean(name string, bean T) error
+	RegisterBean(name string, bean any) error
 	// GetBean get bean by name(ID)
 	// 通过 Bean 的名称获取实例, 通过 ok 值表征是否存在与 IOC 中
-	GetBean(name string) (T, bool)
+	GetBean(name string) (any, bool)
 	// ContainsBean does this bean factory contain a bean definition or externally registered singleton instance with the given name?
 	// 判定 IOC 容器中是否有该 Bean 的实例
 	ContainsBean(name string) bool
